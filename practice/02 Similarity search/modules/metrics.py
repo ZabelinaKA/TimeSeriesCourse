@@ -72,8 +72,19 @@ def DTW_distance(ts1, ts2, r=None):
         DTW distance between ts1 and ts2.
     """
 
-    dtw_dist = 0
+    dtw_dist = 0   
+    assert len(ts1) == len(ts2) 
 
-    # INSERT YOUR CODE
+    dtw_matrix = np.full((len(ts1), len(ts2)), np.inf)
+    
+    dtw_matrix[0, 0] = 0
 
+    for i in range(1, len(ts1)):
+        for j in range(1, len(ts2)):
+            cost = (ts1[i] - ts2[j]) **2
+            dtw_matrix[i, j] = cost + min(dtw_matrix[i-1, j],
+                                          dtw_matrix[i, j-1],
+                                          dtw_matrix[i-1, j-1])
+    dtw_dist = dtw_matrix[-1, -1]
+    
     return dtw_dist
