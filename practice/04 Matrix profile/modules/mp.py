@@ -32,7 +32,8 @@ def compute_mp(ts1, m, exclusion_zone=None, ts2=None):
         exclusion zone, the first and second time series).
     """
     
-    # INSERT YOUR CODE
+    config.STUMPY_EXCL_ZONE_DENOM = exclusion_zone
+    mp = stumpy.stump(ts1, m)
 
     return {'mp': mp[:, 0],
             'mpi': mp[:, 1],

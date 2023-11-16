@@ -26,7 +26,13 @@ def top_k_discords(matrix_profile, top_k=3):
     discords_dist = []
     discords_nn_idx = []
 
-    # INSERT YOUR CODE
+    for index in range(0, top_k):
+        discord_idx = np.argmax(matrix_profile['mp'])
+        nearest_neighbor_idx = matrix_profile['mpi'][discord_idx]
+        discords_idx.append(discord_idx)
+        discords_nn_idx.append(nearest_neighbor_idx)
+        discords_dist.append(matrix_profile['mp'][discord_idx])
+        matrix_profile['mp'][discord_idx] = -np.inf
 
     return {
         'indices' : discords_idx,
